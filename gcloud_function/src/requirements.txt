@@ -1,0 +1,7 @@
+Flask
+marshmallow==2.19.5
+google-cloud-core
+google-cloud-datastore
+google-cloud-storage
+google-cloud-logging
+google-cloud-pubsub

@@ -1,0 +1,14 @@
+version: "3.7"
+
+services:
+  webservice:
+    build:
+      context: .
+    env_file:
+       - .env
+    volumes:
+      - ./src:/usr/application/src
+      - ./run-local.py:/usr/application/run-local.py
+      - ./credentials:/usr/application/credentials
+    ports:
+      - "5000:5000"

@@ -1,0 +1,28 @@
+service: my-gcloud-function
+
+provider:
+  name: google
+  stage: dev
+  runtime: python37
+  region: europe-west1
+  project: 	<your_project_id_here>
+  credentials: <google_credentials_filepath>
+  environment:
+    app_settings: "prod"
+    pubsub_topic_id: "MyEventsTopic"
+    google_project_id: <your_project_id_here>
+
+plugins:
+  - serverless-google-cloudfunctions
+
+package:
+  exclude:
+    - node_modules/**
+    - .gitignore
+    - .git/**
+
+functions:
+  first:
+    handler: handler
+    events:
+      - http: path

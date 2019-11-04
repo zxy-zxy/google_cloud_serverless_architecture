@@ -1,0 +1,4 @@
+app_settings=dev
+pubsub_topic_id=MyEventsTopic
+google_project_id=<your_project_id_here>
+GOOGLE_APPLICATION_CREDENTIALS=/usr/application/credentials/service_account_key.json
