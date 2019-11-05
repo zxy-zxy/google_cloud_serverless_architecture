@@ -14,8 +14,8 @@ app_settings = os.getenv("app_settings")
 pubsub_topic_id = os.getenv("pubsub_topic_id")
 google_project_id = os.getenv("google_project_id")
 
-setup_config(app_settings)
 setup_logging(app_settings)
+current_config = setup_config(app_settings)
 
 logging.info("Start function with settings: {}".format(app_settings))
 
@@ -43,24 +43,30 @@ def handler(request):
         logging.error(log_msg)
         return make_response(jsonify(response), status.HTTP_400_BAD_REQUEST)
 
-    logging.debug("post data :{}".format(post_data))
+    logging.debug("post data: {}".format(post_data))
 
     if post_data is None:
-        logging.debug("Cannot continue with empty request, response to send: {}".format(response))
+        logging.debug(
+            "Cannot continue with empty request, response to send: {}".format(response)
+        )
         return make_response(jsonify(response), status.HTTP_400_BAD_REQUEST)
 
     try:
         event_action = event_action_schema.load(post_data).data
     except ValidationError as err:
-        logging.error("An error occurred during loading object :{}".format(str(err)))
+        logging.error(
+            "An error occurred during loading data. Data: {}, error: {}".format(
+                post_data, err
+            )
+        )
         response["errors"] = err.messages
         return make_response(jsonify(response), status.HTTP_400_BAD_REQUEST)
 
     logging.debug("event action: {}".format(event_action))
 
     event_action_dumped = event_action_schema.dumps(event_action)
-    logging.debug("dumped message: {}".format(event_action_dumped.data))
-    publisher.publish(topic_path, event_action_dumped.data.encode())
+    logging.info("dumped message: {}".format(event_action_dumped.data))
+    publisher.publish(topic_path, event_action_dumped.data.encode("utf-8"))
 
     response = {"status": "success", "message": "Processed"}
     logging.debug("response: {}".format(response))

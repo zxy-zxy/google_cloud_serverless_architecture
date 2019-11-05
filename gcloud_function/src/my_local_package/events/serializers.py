@@ -14,7 +14,12 @@ class EventActionSchema(Schema):
 
     class Meta:
         strict = True
-        fields = ("uid", "action", "timestamp", "timestampo",)
+        fields = (
+            "uid",
+            "action",
+            "timestamp",
+            "timestampo",
+        )
 
     @post_load
     def make_event_action(self, data, **kwargs):

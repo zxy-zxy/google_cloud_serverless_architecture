@@ -1,43 +1,19 @@
-### Google Cloud Function with Serverless
+### Data processing pipeline on Google Cloud 
 
-#### Development with Docker
+This repo contains small serverless data processing pipeline POC.
 
-* Check example-env for details
-* Run docker container with gcloud function for local observation
-```bash
-cd src &&\
-docker-compose -f docker-compose-dev.yaml up --build
-```
+#### Serverless function
+[First part](gcloud_function/README.md) contains example of serverless function which is aimed to 
+pass incoming data to pubsub with 
+* Google Cloud Functions
+* Google Cloud PubSub  
 
-#### Create Google PubSub topic and subscription
-* Create topic
-```bash
-gcloud pubsub topics create MyEventsTopic
-```
-* Create subscription
-```bash
-gcloud pubsub subscriptions create MyEventsTopicSubscription --topic MyEventsTopic --ack-deadline=20
-```
+Development environment could be setup with a Docker, 
+however deployment cycle is based on [Serverless framework](https://serverless.com/).
 
-#### Install serverless
-```bash
-sudo npm install -g serverless
-sudo npm install --save serverless-google-cloudfunctions
-```
-
-```bash
-serverless create --template google-python\
---path src --name my-gcloud-function
-```
-
-#### Package and deploy 
-
-* Create template if it not exists
-```bash
-serverless create --template google-python --path event_processor
-```
-* Deploy with deployment manager
-```bash
-serverless package
-serverless deploy
-```
+#### Streaming pipeline
+[Second part](gcloud_streaming_pipeline/README.md) contains implementation of streaming pipeline which is 
+implemented with following technologies:
+* Google Cloud PubSub  
+* Google Cloud DataFlow
+* Google BigQuery

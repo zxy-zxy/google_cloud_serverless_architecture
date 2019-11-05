@@ -65,6 +65,17 @@ class Config:
     def __init__(self):
         pass
 
+    def __repr__(self):
+        current_config = [
+            "key: {} value: {}".format(attribute, getattr(self, attribute))
+            for attribute in self.__dir__()
+            if not attribute.startswith("__")
+        ]
+        return ",".join(current_config)
+
+    def __str__(self):
+        return self.__repr__()
+
 
 class DevelopmentConfig(Config):
     def __init__(self):
