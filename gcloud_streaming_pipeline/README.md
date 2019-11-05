@@ -23,5 +23,5 @@ python process_streaming.py \
 --staging_location gs://<your_project_id_here>/staging
 ```
 
-* *PubSub input topic* should be described as  projects/project_id/topics/topic_id
-* *BigQuery output table* should be defined as project_id:dataset.table
+* *PubSub input topic* should be setup as  projects/project_id/topics/topic_id
+* *BigQuery output table* should be setup as project_id:dataset.table
