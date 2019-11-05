@@ -1,17 +1,17 @@
-####Streaming pipeline with Apache Beam, Google PubSub and Google DataFlow
-####Execute the pipeline
+#### Streaming pipeline with Apache Beam, Google PubSub and Google DataFlow
+#### Execute the pipeline
 * Assign Google service account key path to environment variable
 ```bash
 export GOOGLE_APPLICATION_CREDENTIALS=/home/usr/.gcloud/service_account.json
 ```
-#####Run with local runner
+##### Run with local runner
 ```bash
 python process_streaming.py \
 --streaming \
 --input-topic <your_pubsub_topic_id_here> \
 --output-table <your_bigquery_table_id_here> 
 ```
-#####Run with Dataflow runner
+##### Run with Dataflow runner
 ```bash
 python process_streaming.py \
 --project <your_project_id_here> \

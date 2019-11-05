@@ -1,6 +1,6 @@
 ### Data processing pipeline on Google Cloud 
 
-This repo contains small serverless data processing pipeline POC.
+This repo contains POC of small serverless data processing pipeline.
 
 #### Serverless function
 [First part](gcloud_function/README.md) contains example of serverless function which is aimed to 
